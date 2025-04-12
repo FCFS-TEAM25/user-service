@@ -1,5 +1,7 @@
 package com.sparta.limited.user_service.application.service;
 
+import com.sparta.limited.common_module.exception.BusinessException;
+import com.sparta.limited.common_module.exception.ErrorCode;
 import com.sparta.limited.user_service.application.mapper.UserMapper;
 import com.sparta.limited.user_service.domain.model.User;
 import com.sparta.limited.user_service.domain.repository.UserRepository;
@@ -18,6 +20,9 @@ public class UserService {
 
     @Transactional
     public UserCreateFromAuthResponse createUser(UserCreateFromAuthRequest request) {
+        if (userRepository.existsByUsername(request.getUsername())) {
+            throw new BusinessException(ErrorCode.DUPLICATE_RESOURCE);
+        }
         User user = userMapper.toEntity(request);
         userRepository.save(user);
         return userMapper.toResponse(user);
