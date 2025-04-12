@@ -1,3 +1,5 @@
+server:
+  port: 19092
 spring:
   config:
     import:
