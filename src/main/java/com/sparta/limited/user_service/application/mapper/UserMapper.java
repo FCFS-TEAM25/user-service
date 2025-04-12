@@ -18,12 +18,14 @@ public class UserMapper {
     }
 
     public UserCreateFromAuthResponse toResponse(User user) {
-        return new UserCreateFromAuthResponse(user.getId(),
+        return UserCreateFromAuthResponse.of(
+            user.getId(),
             user.getUsername(),
             user.getRole().toString(),
             user.getGender().toString(),
             user.getAge(),
-            user.getAddress());
+            user.getAddress()
+        );
     }
 
 }
