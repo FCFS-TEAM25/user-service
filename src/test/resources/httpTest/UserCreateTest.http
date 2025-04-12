@@ -1,0 +1,23 @@
+### 사용자 등록 테스트 (성공)
+POST http://localhost:8080/api/v1/internal/users
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "1234",
+  "gender": "MALE",
+  "age": 20,
+  "address": "서울"
+}
+
+### 동일 사용자 등록 테스트 (usernmae 중복 실패)
+POST http://localhost:8080/api/v1/internal/users
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "12345",
+  "gender": "MALE",
+  "age": 20,
+  "address": "서울"
+}
