@@ -20,8 +20,8 @@ public class UserMapper {
         return UserCreateFromAuthResponse.of(
             user.getId(),
             user.getUsername(),
-            user.getRole().toString(),
-            user.getGender().toString(),
+            user.getRole(),
+            user.getGender(),
             user.getAge(),
             user.getAddress()
         );
@@ -31,8 +31,8 @@ public class UserMapper {
         return UserSearchUsernameResponse.of(
             user.getId(),
             user.getUsername(),
-            user.getRole().toString(),
-            user.getGender().toString(),
+            user.getRole(),
+            user.getGender(),
             user.getAge(),
             user.getAddress()
         );
