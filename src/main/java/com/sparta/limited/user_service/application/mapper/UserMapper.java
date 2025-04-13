@@ -4,12 +4,11 @@ import com.sparta.limited.user_service.domain.model.Gender;
 import com.sparta.limited.user_service.domain.model.User;
 import com.sparta.limited.user_service.infrastructure.dto.request.UserCreateFromAuthRequest;
 import com.sparta.limited.user_service.infrastructure.dto.response.UserCreateFromAuthResponse;
-import org.springframework.stereotype.Component;
+import com.sparta.limited.user_service.infrastructure.dto.response.UserSearchUsernameResponse;
 
-@Component
 public class UserMapper {
 
-    public User toEntity(UserCreateFromAuthRequest request) {
+    public static User toEntity(UserCreateFromAuthRequest request) {
         return User.of(request.getUsername(),
             request.getPassword(),
             Gender.from(request.getGender()),
@@ -17,12 +16,23 @@ public class UserMapper {
             request.getAddress());
     }
 
-    public UserCreateFromAuthResponse toResponse(User user) {
+    public static UserCreateFromAuthResponse toResponse(User user) {
         return UserCreateFromAuthResponse.of(
             user.getId(),
             user.getUsername(),
-            user.getRole().toString(),
-            user.getGender().toString(),
+            user.getRole(),
+            user.getGender(),
+            user.getAge(),
+            user.getAddress()
+        );
+    }
+
+    public static UserSearchUsernameResponse toSearchUsernameResponse(User user) {
+        return UserSearchUsernameResponse.of(
+            user.getId(),
+            user.getUsername(),
+            user.getRole(),
+            user.getGender(),
             user.getAge(),
             user.getAddress()
         );

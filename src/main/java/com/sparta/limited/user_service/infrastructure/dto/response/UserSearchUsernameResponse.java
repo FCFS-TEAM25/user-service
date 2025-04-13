@@ -5,7 +5,7 @@ import com.sparta.limited.user_service.domain.model.UserRole;
 import lombok.Getter;
 
 @Getter
-public class UserCreateFromAuthResponse {
+public class UserSearchUsernameResponse {
 
     private final Long userId;
     private final String username;
@@ -14,7 +14,8 @@ public class UserCreateFromAuthResponse {
     private final Integer age;
     private final String address;
 
-    private UserCreateFromAuthResponse(Long userId, String username, UserRole role, Gender gender,
+    private UserSearchUsernameResponse(Long userId, String username, UserRole role,
+        Gender gender,
         Integer age, String address) {
         this.userId = userId;
         this.username = username;
@@ -24,10 +25,10 @@ public class UserCreateFromAuthResponse {
         this.address = address;
     }
 
-    public static UserCreateFromAuthResponse of(Long userId, String username, UserRole role,
+    public static UserSearchUsernameResponse of(Long userId, String username, UserRole role,
         Gender gender,
         Integer age, String address) {
-        return new UserCreateFromAuthResponse(
+        return new UserSearchUsernameResponse(
             userId,
             username,
             role,
