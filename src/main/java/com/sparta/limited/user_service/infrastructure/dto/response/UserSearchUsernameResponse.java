@@ -9,28 +9,43 @@ public class UserSearchUsernameResponse {
 
     private final Long userId;
     private final String username;
+    private final String password;
     private final UserRole role;
     private final Gender gender;
     private final Integer age;
     private final String address;
 
-    private UserSearchUsernameResponse(Long userId, String username, UserRole role,
+    private UserSearchUsernameResponse(
+        Long userId,
+        String username,
+        String password,
+        UserRole role,
         Gender gender,
-        Integer age, String address) {
+        Integer age,
+        String address
+    ) {
         this.userId = userId;
         this.username = username;
+        this.password = password;
         this.role = role;
         this.gender = gender;
         this.age = age;
         this.address = address;
     }
 
-    public static UserSearchUsernameResponse of(Long userId, String username, UserRole role,
+    public static UserSearchUsernameResponse of(
+        Long userId,
+        String username,
+        String password,
+        UserRole role,
         Gender gender,
-        Integer age, String address) {
+        Integer age,
+        String address
+    ) {
         return new UserSearchUsernameResponse(
             userId,
             username,
+            password,
             role,
             gender,
             age,

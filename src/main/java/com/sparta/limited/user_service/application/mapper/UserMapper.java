@@ -31,6 +31,7 @@ public class UserMapper {
         return UserSearchUsernameResponse.of(
             user.getId(),
             user.getUsername(),
+            user.getPassword(),
             user.getRole(),
             user.getGender(),
             user.getAge(),
