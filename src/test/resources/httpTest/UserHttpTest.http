@@ -25,3 +25,7 @@ Content-Type: application/json
 ### username 기반 사용자 조회 테스트
 GET http://localhost:19092/api/v1/internal/users/search?username=test
 Content-Type: application/json
+
+### userId 기반 사용자 조회 테스트
+GET http://localhost:19092/api/v1/internal/users/3
+Content-Type: application/json
