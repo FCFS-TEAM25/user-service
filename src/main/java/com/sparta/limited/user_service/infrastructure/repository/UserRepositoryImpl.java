@@ -30,4 +30,10 @@ public class UserRepositoryImpl implements UserRepository {
             .orElseThrow(() -> new BusinessException(ErrorCode.RESOURCES_NOT_FOUND));
     }
 
+    @Override
+    public User findById(Long userId) {
+        return jpaUserRepository.findById(userId)
+            .orElseThrow(() -> new BusinessException(ErrorCode.RESOURCES_NOT_FOUND));
+    }
+
 }
