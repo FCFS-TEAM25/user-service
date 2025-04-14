@@ -4,6 +4,7 @@ import com.sparta.limited.user_service.domain.model.Gender;
 import com.sparta.limited.user_service.domain.model.User;
 import com.sparta.limited.user_service.infrastructure.dto.request.UserCreateFromAuthRequest;
 import com.sparta.limited.user_service.infrastructure.dto.response.UserCreateFromAuthResponse;
+import com.sparta.limited.user_service.infrastructure.dto.response.UserSearchUserIdResponse;
 import com.sparta.limited.user_service.infrastructure.dto.response.UserSearchUsernameResponse;
 
 public class UserMapper {
@@ -39,4 +40,14 @@ public class UserMapper {
         );
     }
 
+    public static UserSearchUserIdResponse toSearchUserIdResponse(User user) {
+        return UserSearchUserIdResponse.of(
+            user.getId(),
+            user.getUsername(),
+            user.getRole(),
+            user.getGender(),
+            user.getAge(),
+            user.getAddress()
+        );
+    }
 }
