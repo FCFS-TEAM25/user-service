@@ -7,6 +7,7 @@ import com.sparta.limited.user_service.domain.model.User;
 import com.sparta.limited.user_service.domain.repository.UserRepository;
 import com.sparta.limited.user_service.infrastructure.dto.request.UserCreateFromAuthRequest;
 import com.sparta.limited.user_service.infrastructure.dto.response.UserCreateFromAuthResponse;
+import com.sparta.limited.user_service.infrastructure.dto.response.UserSearchUserIdResponse;
 import com.sparta.limited.user_service.infrastructure.dto.response.UserSearchUsernameResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,9 +30,14 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public UserSearchUsernameResponse searchUserFromUsername(String username) {
+    public UserSearchUsernameResponse searchUserByUsername(String username) {
         User user = userRepository.findByUsername(username);
         return UserMapper.toSearchUsernameResponse(user);
     }
 
+    @Transactional(readOnly = true)
+    public UserSearchUserIdResponse searchUserByUserId(Long userId) {
+        User user = userRepository.findById(userId);
+        return UserMapper.toSearchUserIdResponse(user);
+    }
 }
