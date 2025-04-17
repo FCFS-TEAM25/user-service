@@ -1,5 +1,6 @@
 package com.sparta.limited.user_service.application.mapper;
 
+import com.sparta.limited.user_service.application.dto.response.UserGetMyPageResponse;
 import com.sparta.limited.user_service.domain.model.Gender;
 import com.sparta.limited.user_service.domain.model.User;
 import com.sparta.limited.user_service.infrastructure.dto.request.UserCreateFromAuthRequest;
@@ -43,6 +44,16 @@ public class UserMapper {
     public static UserSearchUserIdResponse toSearchUserIdResponse(User user) {
         return UserSearchUserIdResponse.of(
             user.getId(),
+            user.getUsername(),
+            user.getRole(),
+            user.getGender(),
+            user.getAge(),
+            user.getAddress()
+        );
+    }
+
+    public static UserGetMyPageResponse toGetMyPageResponse(User user) {
+        return UserGetMyPageResponse.of(
             user.getUsername(),
             user.getRole(),
             user.getGender(),

@@ -7,6 +7,7 @@ import com.sparta.limited.user_service.infrastructure.dto.response.UserSearchUse
 import com.sparta.limited.user_service.infrastructure.dto.response.UserSearchUsernameResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +30,7 @@ public class UserInternalController {
         @RequestBody UserCreateFromAuthRequest request
     ) {
         UserCreateFromAuthResponse response = userService.createUser(request);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/search")
