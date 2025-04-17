@@ -2,6 +2,7 @@ package com.sparta.limited.user_service.application.service;
 
 import com.sparta.limited.common_module.exception.BusinessException;
 import com.sparta.limited.common_module.exception.ErrorCode;
+import com.sparta.limited.user_service.application.dto.response.UserGetMyPageResponse;
 import com.sparta.limited.user_service.application.mapper.UserMapper;
 import com.sparta.limited.user_service.domain.model.User;
 import com.sparta.limited.user_service.domain.repository.UserRepository;
@@ -39,5 +40,11 @@ public class UserService {
     public UserSearchUserIdResponse searchUserByUserId(Long userId) {
         User user = userRepository.findById(userId);
         return UserMapper.toSearchUserIdResponse(user);
+    }
+
+    @Transactional(readOnly = true)
+    public UserGetMyPageResponse getMyPage(Long userId) {
+        User user = userRepository.findById(userId);
+        return UserMapper.toGetMyPageResponse(user);
     }
 }
