@@ -7,5 +7,6 @@ spring:
       - classpath:properties/database.yml
       - classpath:properties/jpa.yml
       - classpath:properties/eureka-client.yml
+      - classpath:properties/actuator.yml
   application:
     name: user-service
