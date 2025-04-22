@@ -1,11 +1,10 @@
 package com.sparta.limited.user_service.application.service;
 
-import com.sparta.limited.common_module.exception.BusinessException;
-import com.sparta.limited.common_module.exception.ErrorCode;
 import com.sparta.limited.user_service.application.dto.response.UserGetMyPageResponse;
 import com.sparta.limited.user_service.application.mapper.UserMapper;
 import com.sparta.limited.user_service.domain.model.User;
 import com.sparta.limited.user_service.domain.repository.UserRepository;
+import com.sparta.limited.user_service.domain.validator.UserDuplicatedValidator;
 import com.sparta.limited.user_service.infrastructure.dto.request.UserCreateFromAuthRequest;
 import com.sparta.limited.user_service.infrastructure.dto.response.UserCreateFromAuthResponse;
 import com.sparta.limited.user_service.infrastructure.dto.response.UserSearchUserIdResponse;
@@ -22,9 +21,8 @@ public class UserService {
 
     @Transactional
     public UserCreateFromAuthResponse createUser(UserCreateFromAuthRequest request) {
-        if (userRepository.existsByUsername(request.getUsername())) {
-            throw new BusinessException(ErrorCode.DUPLICATE_RESOURCE);
-        }
+        boolean duplicateCheck = userRepository.existsByUsername(request.getUsername());
+        UserDuplicatedValidator.isDuplicated(duplicateCheck, request.getUsername());
         User user = UserMapper.toEntity(request);
         userRepository.save(user);
         return UserMapper.toResponse(user);
