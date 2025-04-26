@@ -1,0 +1,36 @@
+### 사용자 등록 테스트 (성공)
+POST http://localhost:19092/api/v1/internal/users
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "1234",
+  "gender": "MALE",
+  "age": 20,
+  "address": "서울"
+}
+
+### 동일 사용자 등록 테스트 (username 중복 실패)
+POST http://localhost:19092/api/v1/internal/users
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "12345",
+  "gender": "MALE",
+  "age": 20,
+  "address": "서울"
+}
+
+### username 기반 사용자 조회 테스트
+GET http://localhost:19092/api/v1/internal/users/search?username=test
+Content-Type: application/json
+
+### userId 기반 사용자 조회 테스트
+GET http://localhost:19092/api/v1/internal/users/3
+Content-Type: application/json
+
+### 사용자 본인 조회 테스트
+GET http://localhost:19092/api/v1/users/my-page
+Content-Type: application/json
+X-User-Id: 4
