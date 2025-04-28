@@ -2,6 +2,8 @@ package com.sparta.limited.user_service.domain.repository;
 
 import com.sparta.limited.user_service.domain.model.User;
 
+import java.util.List;
+
 public interface UserRepository {
 
     void save(User user);
@@ -11,4 +13,6 @@ public interface UserRepository {
     User findByUsername(String username);
 
     User findById(Long userId);
+
+    List<User> findAll();
 }

@@ -7,6 +7,8 @@ import com.sparta.limited.user_service.infrastructure.persistence.JpaUserReposit
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class UserRepositoryImpl implements UserRepository {
@@ -33,6 +35,11 @@ public class UserRepositoryImpl implements UserRepository {
     public User findById(Long userId) {
         return jpaUserRepository.findById(userId)
             .orElseThrow(() -> new UserNotfoundException(userId));
+    }
+
+    @Override
+    public List<User> findAll() {
+        return jpaUserRepository.findAll();
     }
 
 }
