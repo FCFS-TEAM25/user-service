@@ -1,5 +1,6 @@
 package com.sparta.limited.user_service.presentation.internal.controller;
 
+import com.sparta.limited.common_module.common.aop.RoleCheck;
 import com.sparta.limited.user_service.application.service.UserService;
 import com.sparta.limited.user_service.infrastructure.dto.request.UserCreateFromAuthRequest;
 import com.sparta.limited.user_service.infrastructure.dto.response.UserCreateFromAuthResponse;
@@ -45,8 +46,9 @@ public class UserInternalController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping
-    public ResponseEntity<List<UserSearchUserIdResponse>> getAllUsers() {
+    @GetMapping("/cache-all")
+    @RoleCheck("ROLE_ADMIN")
+    public ResponseEntity<List<UserSearchUserIdResponse>> getAllUsersForCahce() {
         List<UserSearchUserIdResponse> response = userService.searchAllUsers();
         return ResponseEntity.ok(response);
     }
