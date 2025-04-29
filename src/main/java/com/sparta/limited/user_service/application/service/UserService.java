@@ -49,7 +49,7 @@ public class UserService {
         return UserMapper.toGetMyPageResponse(user);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<UserSearchUserIdResponse> searchAllUsers() {
         List<User> users = userRepository.findAll();
         return users.stream()
