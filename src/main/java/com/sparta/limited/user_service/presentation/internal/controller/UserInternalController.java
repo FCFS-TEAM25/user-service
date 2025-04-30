@@ -8,6 +8,8 @@ import com.sparta.limited.user_service.infrastructure.dto.response.UserSearchUse
 import com.sparta.limited.user_service.infrastructure.dto.response.UserSearchUsernameResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,8 +50,8 @@ public class UserInternalController {
 
     @GetMapping("/cache-all")
     @RoleCheck("ROLE_ADMIN")
-    public ResponseEntity<List<UserSearchUserIdResponse>> getAllUsersForCahce() {
-        List<UserSearchUserIdResponse> response = userService.searchAllUsers();
+    public ResponseEntity<Page<UserSearchUserIdResponse>> getAllUsersForCache(Pageable pageable) {
+        Page<UserSearchUserIdResponse> response = userService.searchAllUsers(pageable);
         return ResponseEntity.ok(response);
     }
 
