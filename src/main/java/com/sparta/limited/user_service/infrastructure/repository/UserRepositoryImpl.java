@@ -5,7 +5,11 @@ import com.sparta.limited.user_service.domain.model.User;
 import com.sparta.limited.user_service.domain.repository.UserRepository;
 import com.sparta.limited.user_service.infrastructure.persistence.JpaUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -33,6 +37,11 @@ public class UserRepositoryImpl implements UserRepository {
     public User findById(Long userId) {
         return jpaUserRepository.findById(userId)
             .orElseThrow(() -> new UserNotfoundException(userId));
+    }
+
+    @Override
+    public Page<User> findAll(Pageable pageable) {
+        return jpaUserRepository.findAll(pageable);
     }
 
 }

@@ -10,8 +10,13 @@ import com.sparta.limited.user_service.infrastructure.dto.response.UserCreateFro
 import com.sparta.limited.user_service.infrastructure.dto.response.UserSearchUserIdResponse;
 import com.sparta.limited.user_service.infrastructure.dto.response.UserSearchUsernameResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -44,5 +49,11 @@ public class UserService {
     public UserGetMyPageResponse getMyPage(Long userId) {
         User user = userRepository.findById(userId);
         return UserMapper.toGetMyPageResponse(user);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<UserSearchUserIdResponse> searchAllUsers(Pageable pageable) {
+        return userRepository.findAll(pageable)
+                .map(UserMapper::toSearchUserIdResponse);
     }
 }
